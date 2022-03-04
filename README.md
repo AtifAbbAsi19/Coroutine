@@ -17,11 +17,13 @@
             }
 
         }
-
+    //  if (null!=completableJob && completableJob!!.isActive || completableJob!!.complete()) {
+      //          completableJob!!.cancel(CancellationException("manually canceled , Reason: Undo"))
+     // }
         CoroutineScope(Dispatchers.IO + completableJob!!).launch {
 
             val contacts = dispatcher.fetchContacts()
-
+            delay(JOB_UNDO_TIME_OUT)
             withContext(Dispatchers.Main) {
 
                 if (completableJob.complete()) {
